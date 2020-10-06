@@ -3,10 +3,16 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+GENDER = (
+    (0,'Male'),
+    (1,'Female')
+)
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     profile_pic = models.ImageField(upload_to='profile_pic',blank=True)
     profile_URL = models.URLField(blank=True)
+    gender= models.IntegerField(choices=GENDER, default=0)
 
     def get_absolute_url(self):
         return reverse('home')
