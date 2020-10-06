@@ -1,0 +1,27 @@
+{% extends 'register/base.html' %}
+{% block body_block %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
+        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+        <p class="card-text ">{{ post.content | safe }}</p>
+      {{ post.image }}
+      {{ MEDIA_URL }}
+      {% if post.image %}
+        <img src="{{ post.image.url }}">
+      {% endif %}
+       {% if user.is_authenticated %}
+       {% if post.author ==  user  %}
+           <a class="btn btn-success" href="{% url 'update' slug=post.slug%}">Update</a>
+           <a class="btn btn-danger" href="{% url 'delete' slug=post.slug %}">Delete</a>
+       {% endif %}
+      {% endif %}
+      </div>
+    </div>
+    {% block sidebar %} {% include 'post/sidebar.html' %} {% endblock sidebar %}
+  </div>
+</div>
+{% endblock body_block %}

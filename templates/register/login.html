@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'register/base.html' %}
+{%  block title_block %}
+    Welcome to BE_Bloggers
+{% endblock %}
+{% block body_block %}
+<div class="jumbotron">
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="Enter your Username here">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="SpyFree">
+        <input type="submit" value="Hey Oracle">
+    </form>
+</div>
+{% endblock %}

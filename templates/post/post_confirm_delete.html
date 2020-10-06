@@ -1,0 +1,11 @@
+{% extends 'register/base.html' %}
+{% block body_block %}
+    <h3>Are you sure you want to delete <b>{{ post.title }}</b></h3>
+    <br>
+    <br>
+    <form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Delete">
+    <a class="btn btn-success" href="{% url 'details' post.slug %}">Cancel</a>
+    </form>
+{% endblock %}
